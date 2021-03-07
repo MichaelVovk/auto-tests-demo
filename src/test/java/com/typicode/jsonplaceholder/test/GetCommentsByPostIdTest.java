@@ -2,6 +2,7 @@ package com.typicode.jsonplaceholder.test;
 
 import com.typicode.jsonplaceholder.BaseTest;
 import common.Config;
+import common.Constants;
 import models.CommentsModel;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -26,26 +27,25 @@ public class GetCommentsByPostIdTest extends BaseTest {
             assertThat(EmailValidator.getInstance().isValid(s.getEmail())).isTrue());
   }
 
-  @Test(description = "Verify comments not found if Post Is is empty.")
+  @Test(description = "Verify comments empty if Post Is is empty.")
   public void getCommentsByEmptyPostIdProperFormat() {
     given()
         .spec(RequestSpec.get())
     .when()
-        .get("posts/ /comments")
+        .get(Constants.POSTS + "/ /" + Constants.COMMENTS)
     .then()
         .spec(ResponseSpec.okEmptyArrayResponse());
 
   }
 
-  @Test(description = "Verify comments not found if Post is invalid.")
+  @Test(description = "Verify comments empty if Post is invalid.")
   public void getCommentsByInvalidPostId() {
     given()
         .spec(RequestSpec.get())
     .when()
-        .get("posts/" + RandomStringUtils.randomAlphanumeric(10) + "/comments")
+        .get(Constants.POSTS + "/" + RandomStringUtils.randomAlphanumeric(10) + "/"+ Constants.COMMENTS)
     .then()
-        .spec(ResponseSpec.okEmptyArrayResponse())
-    ;
+        .spec(ResponseSpec.okEmptyArrayResponse());
 
   }
 
@@ -58,7 +58,7 @@ public class GetCommentsByPostIdTest extends BaseTest {
                     given()
                         .spec(RequestSpec.get())
                     .when()
-                        .get("posts/" + s + "/comments")
+                        .get(Constants.POSTS + "/" + s + "/" + Constants.COMMENTS)
                     .then()
                         .spec(ResponseSpec.okResponse())
                         .extract()
