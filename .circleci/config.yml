@@ -11,12 +11,15 @@ jobs:
           name: Save test results
           command: |
             mkdir -p ~/test-results/testng/
-            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/testng/ \;
+            find . -type f -regex ".*/target/surefire-reports/.TEST-TestSuite.xml" -exec cp {} ~/test-results/testng/ \;
           when: always
       - store_test_results:
           path: ~/test-results/testng
       - store_artifacts:
           path: ~/test-results/testng
+      - store_artifacts:
+          path: target/html
+          destination: HTML report
       - store_artifacts:
           path: target/jacoco-reports
           destination: Coverage report

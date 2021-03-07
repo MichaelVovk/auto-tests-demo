@@ -33,7 +33,7 @@ public class GetCommentsByPostIdTest extends BaseTest {
     .when()
         .get("posts/ /comments")
     .then()
-        .spec(ResponseSpec.notFoundResponse());
+        .spec(ResponseSpec.okEmptyArrayResponse());
 
   }
 
@@ -44,7 +44,8 @@ public class GetCommentsByPostIdTest extends BaseTest {
     .when()
         .get("posts/" + RandomStringUtils.randomAlphanumeric(10) + "/comments")
     .then()
-        .spec(ResponseSpec.notFoundResponse());
+        .spec(ResponseSpec.okEmptyArrayResponse())
+    ;
 
   }
 

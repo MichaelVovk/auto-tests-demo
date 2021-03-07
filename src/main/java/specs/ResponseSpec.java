@@ -4,7 +4,8 @@ import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
-import static org.hamcrest.Matchers.lessThan;
+
+import static org.hamcrest.Matchers.*;
 
 public class ResponseSpec {
 
@@ -14,6 +15,16 @@ public class ResponseSpec {
                 .expectStatusCode(HttpStatus.SC_OK)
                 .expectContentType(ContentType.JSON)
                 .expectResponseTime(lessThan(2000L))
+                .expectBody(is(not(empty())))
+                .build();
+    }
+
+    public static ResponseSpecification okEmptyArrayResponse() {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(HttpStatus.SC_OK)
+                .expectContentType(ContentType.JSON)
+                .expectResponseTime(lessThan(2000L))
+                .expectBody(is("[]"))
                 .build();
     }
 
