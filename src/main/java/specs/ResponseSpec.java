@@ -24,7 +24,7 @@ public class ResponseSpec {
                 .expectStatusCode(HttpStatus.SC_OK)
                 .expectContentType(ContentType.JSON)
                 .expectResponseTime(lessThan(2000L))
-                .expectBody(is(emptyArray()))
+                .expectBody(is("[]"))
                 .build();
     }
 
