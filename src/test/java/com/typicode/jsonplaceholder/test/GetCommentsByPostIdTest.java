@@ -28,7 +28,7 @@ public class GetCommentsByPostIdTest extends BaseTest {
   }
 
   @Test(description = "Verify comments empty if Post Is is empty.")
-  public void getCommentsByEmptyPostIdProperFormat() {
+  public void checkCommentsByEmptyPostIdProperFormat() {
     given()
         .spec(RequestSpec.get())
     .when()
@@ -39,7 +39,7 @@ public class GetCommentsByPostIdTest extends BaseTest {
   }
 
   @Test(description = "Verify comments empty if Post is invalid.")
-  public void getCommentsByInvalidPostId() {
+  public void checkCommentsByInvalidPostId() {
     given()
         .spec(RequestSpec.get())
     .when()
